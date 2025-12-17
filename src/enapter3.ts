@@ -444,6 +444,19 @@ const completionSpec: Fig.Spec = {
             ...commonOptions,
           ],
         },
+        {
+          name: "run-terminal",
+          description: "Run shell terminal for Enapter Gateway device",
+          options: [
+            {
+              name: ["-d", "--device-id"],
+              description: "Enapter Gateway Device ID",
+              isRequired: true,
+              args: { name: "device-id" },
+            },
+            ...commonOptions,
+          ],
+        },
       ],
     },
     {
