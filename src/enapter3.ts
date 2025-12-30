@@ -9,6 +9,11 @@ const commonOptions: Fig.Option[] = [
     args: { name: "API URL" },
   },
   {
+    name: ["--connection", "-c"],
+    description: "Name of the connection to use",
+    args: { name: "connection" },
+  },
+  {
     name: "--api-allow-insecure",
     description: "Allow insecure API connection (default: disabled)",
   },
@@ -549,6 +554,83 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "connection",
+      description: "Management connections to Enapter Cloud and Gateways",
+      subcommands: [
+        {
+          name: "add",
+          description: "Add a new connection to Enapter Cloud or Gateway",
+          options: [
+            {
+              name: "--name",
+              description: "Connection name",
+              isRequired: true,
+              args: { name: "name" },
+            },
+            {
+              name: "--gateway",
+              description:
+                "Indicates that the connection is to a Gateway (default: false)",
+            },
+            {
+              name: "--url",
+              description:
+                'Enapter API base URL (default: "https://api.enapter.com")',
+              args: { name: "url" },
+            },
+            {
+              name: "--token",
+              description: "Enapter API access token",
+              isRequired: true,
+              args: { name: "token" },
+            },
+            {
+              name: "--site-id",
+              description:
+                "If specified, the connection will be limited to this site (Cloud connections only)",
+              args: { name: "site-id" },
+            },
+            {
+              name: "--allow-insecure",
+              description:
+                "Allow insecure connections to the Enapter API (default: false)",
+            },
+            ...commonOptions,
+          ],
+        },
+        {
+          name: "remove",
+          description: "Remove a connection",
+          options: [
+            {
+              name: "--name",
+              description: "Connection name",
+              isRequired: true,
+              args: { name: "name" },
+            },
+            ...commonOptions,
+          ],
+        },
+        {
+          name: "list",
+          description: "List all configured connections",
+        },
+        {
+          name: "set-default",
+          description: "Set a connection as default",
+          options: [
+            {
+              name: "--name",
+              description: "Connection name",
+              isRequired: true,
+              args: { name: "name" },
+            },
+            ...commonOptions,
+          ],
+        },
+      ],
+    },
+    {
       name: "rule-engine",
       description: "Rule engine (automation) management commands",
       subcommands: [
@@ -747,6 +829,83 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["-f", "--follow"],
                   description: "Follow the log output (default: false)",
+                },
+                ...commonOptions,
+              ],
+            },
+          ],
+        },
+        {
+          name: "connection",
+          description: "Management connections to Enapter Cloud and Gateways",
+          subcommands: [
+            {
+              name: "add",
+              description: "Add a new connection to Enapter Cloud or Gateway",
+              options: [
+                {
+                  name: "--name",
+                  description: "Connection name",
+                  isRequired: true,
+                  args: { name: "name" },
+                },
+                {
+                  name: "--gateway",
+                  description:
+                    "Indicates that the connection is to a Gateway (default: false)",
+                },
+                {
+                  name: "--url",
+                  description:
+                    'Enapter API base URL (default: "https://api.enapter.com")',
+                  args: { name: "url" },
+                },
+                {
+                  name: "--token",
+                  description: "Enapter API access token",
+                  isRequired: true,
+                  args: { name: "token" },
+                },
+                {
+                  name: "--site-id",
+                  description:
+                    "If specified, the connection will be limited to this site (Cloud connections only)",
+                  args: { name: "site-id" },
+                },
+                {
+                  name: "--allow-insecure",
+                  description:
+                    "Allow insecure connections to the Enapter API (default: false)",
+                },
+                ...commonOptions,
+              ],
+            },
+            {
+              name: "remove",
+              description: "Remove a connection",
+              options: [
+                {
+                  name: "--name",
+                  description: "Connection name",
+                  isRequired: true,
+                  args: { name: "name" },
+                },
+                ...commonOptions,
+              ],
+            },
+            {
+              name: "list",
+              description: "List all configured connections",
+            },
+            {
+              name: "set-default",
+              description: "Set a connection as default",
+              options: [
+                {
+                  name: "--name",
+                  description: "Connection name",
+                  isRequired: true,
+                  args: { name: "name" },
                 },
                 ...commonOptions,
               ],
