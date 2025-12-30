@@ -36,8 +36,7 @@ const buildProjectSuggestions = (tasks) => {
     .filter((task) => task.status !== "completed")
     .reduce((acc, task) => {
       return (
-        acc[task.project] ? ++acc[task.project] : (acc[task.project] = 1),
-        acc
+        acc[task.project] ? ++acc[task.project] : (acc[task.project] = 1), acc
       );
     }, {});
 
