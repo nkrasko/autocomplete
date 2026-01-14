@@ -4,14 +4,14 @@ Please reach out https://go.enapter.com/discord for support
 */
 const commonOptions: Fig.Option[] = [
   {
-    name: "--api-url",
-    description: "Override Cloud or Gateway API base URL",
-    args: { name: "API URL" },
-  },
-  {
     name: ["--connection", "-c"],
     description: "Name of the connection to use",
     args: { name: "connection" },
+  },
+  {
+    name: "--site-id",
+    description: "Site ID",
+    args: { name: "value" },
   },
   {
     name: "--api-allow-insecure",
@@ -458,6 +458,24 @@ const completionSpec: Fig.Spec = {
               description: "Enapter Gateway Device ID",
               isRequired: true,
               args: { name: "device-id" },
+            },
+            ...commonOptions,
+          ],
+        },
+        {
+          name: "monitor",
+          description: "Monitor device traffic",
+          options: [
+            {
+              name: ["-d", "--device-id"],
+              description: "Device ID",
+              isRequired: true,
+              args: { name: "device-id" },
+            },
+            {
+              name: "--include-runtime",
+              description:
+                "Monitor device's runtime traffic too (default: false)",
             },
             ...commonOptions,
           ],
